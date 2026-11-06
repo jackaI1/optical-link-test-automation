@@ -1,8 +1,14 @@
-# Optical test bench automation
+I merged this into my existing [lifeos-desk-node project](https://github.com/jackaI1/lifeos-desk-node/tree/main/projects/optical-link-test-automation). The current code is in `projects/optical-link-test-automation/` there. I kept the code here so older links still work.
 
-I built a simulated optical test bench because checking every wavelength and power setting by hand makes it easy to miss a weak link or record a reading incorrectly. It runs the same checks repeatedly, collects the readings, and produces a report I can inspect or share. The dashboard lets me run a sample plan and ask for help investigating a result.
+The move keeps the original layout, including `web/dashboard.tsx`, `web/dashboard.js`, `tests/test_station.py`, `optical_station/fixture.py`. I replaced the README with the report below and left out Git history, installed dependencies, caches and generated build output from the hub copy.
 
-Light gets weaker as it travels through fibre and passes connectors or splices. This reduction is called **loss**; a loss budget is the maximum reduction a link can tolerate. The optical signal-to-noise ratio (**OSNR**) compares useful light with background noise. A high enough OSNR helps a receiver distinguish the signal. This project simulates both so I can practise checking a link without laboratory hardware.
+The project checks are configured in the hub at `.github/workflows/optical-link-test-automation-ci.yml`, with commands run from this project folder and changes filtered to its paths.
+
+---
+
+# optical-link-test-automation
+
+I built a simulated optical test bench to learn how the underlying idea works. This is a learning project.
 
 ## Try it
 
@@ -32,3 +38,11 @@ The Flask service runs the same sequence through a Protobuf fixture request/resp
 ## Development
 
 Run `python -m pytest -q`. After changing `web/dashboard.tsx`, run `npm ci && npm run build`; the small compiled dashboard is committed. GitHub Actions installs the Python dependencies, runs the tests and exercises the command-line report on each push and pull request. The tests cover the loss model, sweep limits, cleaning, fixture messages, injected timeouts, dropouts and outliers, reporting and API behavior.
+
+## Tests and limits
+
+There are 1 test source files in this copy. That source count does not establish an execution result. This is a source snapshot, and running it on a new machine may need environment-specific setup.
+
+
+
+Retained project workflows: `optical-link-test-automation-ci.yml`. Their commands use this folder and their triggers use its paths.
